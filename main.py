@@ -1,14 +1,4 @@
-from flask import Flask
-import threading
 
-app = Flask('')
-
-@app.route('/')
-def home():
-    return "Bot tirik!"
-
-def run():
-    app.run(host='0.0.0.0', port=8080)
 import asyncio
 import logging
 from aiogram import Bot, Dispatcher, types, F
@@ -69,15 +59,13 @@ async def main():
     
     runner = web.AppRunner(app)
     await runner.setup()
-  site = web.TCPSite(runner, '0.0.0.0', port)
-
-threading.Thread(target=run).start() 
+  site = web.TCPSite(runner, '0.0.0.0', port) 
   
 # Bir vaqtning o'zida ham botni, ham veb-saytni ishga tushiramiz
-    await asyncio.gather(
-        dp.start_polling(bot),
-        site.start()
-    )
+await asyncio.gather(
+     dp.start_polling(bot),
+     site.start()
+)
 
 if __name__ == "__main__":
     asyncio.run(main())
