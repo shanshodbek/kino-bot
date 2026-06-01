@@ -69,8 +69,9 @@ async def main():
     
     runner = web.AppRunner(app)
     await runner.setup()
-   site = web.TCPSite(runner, '0.0.0.0', port)
-   threading.Thread(target=run).start() 
+  site = web.TCPSite(runner, '0.0.0.0', port)
+
+threading.Thread(target=run).start() 
   
 # Bir vaqtning o'zida ham botni, ham veb-saytni ishga tushiramiz
     await asyncio.gather(
